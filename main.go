@@ -28,5 +28,8 @@ func main() {
         fmt.Fprintf(w, "Ok")
     })
 
-    log.Fatal(http.ListenAndServe(":8080", nil))
+    var listenOn = ":8080";
+
+    log.Printf("Listening on %s...", listenOn)
+    log.Fatal(http.ListenAndServe(listenOn, nil))
 }
