@@ -3,6 +3,7 @@ package main
 import "net/http"
 import "log"
 import "fmt"
+import "os"
 
 func main() {
     http.HandleFunc("POST /wake/{addr}", func(w http.ResponseWriter, r *http.Request) {
@@ -28,8 +29,12 @@ func main() {
         fmt.Fprintf(w, "Ok")
     })
 
-    var listenOn = ":8080";
+    listenPort := os.Getenv("LISTEN_PORT")
+    if listenPort == "" {
+        listenPort = "8080"
+    }
 
+    var listenOn = fmt.Sprintf(":%s", listenPort)
     log.Printf("Listening on %s...", listenOn)
     log.Fatal(http.ListenAndServe(listenOn, nil))
 }
