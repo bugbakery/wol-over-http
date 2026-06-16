@@ -1,7 +1,6 @@
 package main
 
 import "net"
-import "regexp"
 import "fmt"
 
 const PKG_HEADER_SIZE = 6
